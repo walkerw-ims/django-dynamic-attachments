@@ -45,7 +45,7 @@ def session(request, template=get_template_path(filename='list.html'), context='
         if user is None:
             user = request.user if hasattr(request, 'user') and request.user and request.user.is_authenticated else None
         if content_type and not isinstance(content_type, ContentType):
-            content_type = ContentType.objects.get_for_model(content_type)
+            content_type = ContentType.objects.get_for_model(content_type, for_concrete_model=False)
         if allowed_file_extensions is None:
             allowed_file_extensions = getattr(settings, 'ATTACHMENTS_ALLOWED_FILE_EXTENSIONS', '')
         if allowed_file_types is None:
