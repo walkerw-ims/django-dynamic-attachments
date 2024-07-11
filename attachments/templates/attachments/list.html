@@ -21,7 +21,7 @@
                         </a>
                     </td>
                 </tr>
-                {% if property_form %}
+                {% if property_form and property_form.fields %}
                     <tr class="properties">
                         <td colspan="3">
                             {% block form %}
