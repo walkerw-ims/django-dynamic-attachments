@@ -323,7 +323,9 @@ def delete_upload(request, session_id, upload_id):
 
 def download(request, attach_id, filename=None):
     # Redirect to homepage to prevent any malicious hardcoded urls
-    if isinstance(attach_id, str):
+    try:
+        attach_id = int(attach_id)
+    except ValueError:
         return redirect('home')
     attachment = get_object_or_404(Attachment, pk=attach_id)
     if not user_has_access(request, attachment):
