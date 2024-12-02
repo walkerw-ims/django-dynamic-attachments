@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.move import file_move_safe
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.http import Http404, HttpResponse, JsonResponse, StreamingHttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_str
@@ -322,6 +322,9 @@ def delete_upload(request, session_id, upload_id):
 
 
 def download(request, attach_id, filename=None):
+    # Redirect to homepage to prevent any malicious hardcoded urls
+    if isinstance(attach_id, str):
+        return redirect('home')
     attachment = get_object_or_404(Attachment, pk=attach_id)
     if not user_has_access(request, attachment):
         raise Http404()
