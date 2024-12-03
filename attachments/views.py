@@ -321,8 +321,7 @@ def delete_upload(request, session_id, upload_id):
         return JsonResponse({'ok': False, 'error': force_str(ex)})
 
 
-def download(request, attach_id, filename=None):
-    # Redirect to homepage to prevent any malicious hardcoded urls
+def download(request, attach_id, filename=None):    
     try:
         attach_id = int(attach_id)
     except ValueError:
