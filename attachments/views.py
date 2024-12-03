@@ -326,7 +326,7 @@ def download(request, attach_id, filename=None):
     try:
         attach_id = int(attach_id)
     except ValueError:
-        return redirect('home')
+        raise Http404()
     attachment = get_object_or_404(Attachment, pk=attach_id)
     if not user_has_access(request, attachment):
         raise Http404()
