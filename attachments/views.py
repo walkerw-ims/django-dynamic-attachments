@@ -321,11 +321,7 @@ def delete_upload(request, session_id, upload_id):
         return JsonResponse({'ok': False, 'error': force_str(ex)})
 
 
-def download(request, attach_id, filename=None):    
-    try:
-        attach_id = int(attach_id)
-    except ValueError:
-        raise Http404()
+def download(request, attach_id, filename=None):
     attachment = get_object_or_404(Attachment, pk=attach_id)
     if not user_has_access(request, attachment):
         raise Http404()
