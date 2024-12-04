@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.move import file_move_safe
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.http import Http404, HttpResponse, JsonResponse, StreamingHttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, render
 from django.template import loader
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_str
